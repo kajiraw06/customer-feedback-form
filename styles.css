@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #DD9006;
+    --primary-hover: #c27f05;
+    --background: #0d1b2e;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.5);
+    --border-color: #FFFFFF;
+    --error-color: #DD9006;
+    --success-color: #10b981;
+}
+
+body {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: url('images/webbackground.png') top center / 100% 100% no-repeat fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Updated: Reduced blur to 15px - Version 3 */
+.form-wrapper {
+    background: rgba(20, 30, 50, 0.3);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 40px;
+    padding: 60px 80px;
+    max-width: 861px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1.5px solid rgba(100, 150, 200, 0.3);
+}
+
+.logo-container {
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    max-width: 320px;
+    height: auto;
+    display: inline-block;
+}
+
+.form-title-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.form-title-image {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+h1 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #FF9500 0%, #FFB84D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+    font-family: 'Geist';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+.form-group {
+    margin-bottom: 35px;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-family: 'Geist';
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.required {
+    color: #DD9006;
+    margin-left: 4px;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 47px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    max-width: 652px;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #FFFFFF;
+    border-radius: 24.5px;
+    color: var(--text-primary);
+    font-family: 'Geist';
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 29px;
+    transition: all 0.3s ease;
+}
+
+textarea {
+    min-height: 115px;
+    border-radius: 24.5px;
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #DD9006;
+    background: rgba(221, 144, 6, 0.05);
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Geist';
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+/* Rating Slider */
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+input[type="range"] {
+    flex: 1;
+    max-width: 576px;
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #DD9006;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2.35px #DD9006;
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #DD9006;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #DD9006;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 2.35px #DD9006;
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #DD9006;
+}
+
+.rating-display {
+    font-family: 'Geist';
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: 0.08em;
+    color: #DD9006;
+    min-width: 80px;
+    text-align: center;
+}
+
+.rating-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Geist';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin-top: 8px;
+}
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Geist';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #FFFFFF;
+    position: relative;
+    padding-left: 35px;
+    user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-custom {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 22px;
+    width: 22px;
+    background-color: transparent;
+    border: 2px solid #DD9006;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label:hover .checkbox-custom {
+    background-color: rgba(221, 144, 6, 0.1);
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom {
+    background-color: #DD9006;
+    border-color: #DD9006;
+}
+
+.checkbox-custom::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom::after {
+    display: block;
+}
+
+.char-count {
+    display: block;
+    text-align: right;
+    font-family: 'Geist';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #DD9006;
+    margin-top: 8px;
+}
+
+.error-message {
+    display: none;
+    color: #DD9006;
+    font-family: 'Geist';
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    max-width: 684px;
+    height: 96px;
+    background: url('images/SubmitFeedbackButton.png') center center / contain no-repeat;
+    color: transparent;
+    border: none;
+    font-family: 'Changa', 'Geist', sans-serif;
+    font-weight: 800;
+    font-size: 35px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Success Message */
+.success-message {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid var(--success-color);
+    border-radius: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-message svg {
+    margin-bottom: 20px;
+    color: var(--success-color);
+}
+
+.success-message p {
+    font-size: 1.2rem;
+    color: var(--success-color);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .form-wrapper {
+        padding: 30px 20px;
+        border-radius: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    input[type="text"],
+    textarea {
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    .submit-btn {
+        max-width: 100%;
+        height: 70px;
+        font-size: 24px;
+    }
+
+    .rating-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    input[type="range"] {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-wrapper {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

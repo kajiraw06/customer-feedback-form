@@ -1,0 +1,13 @@
+# Temporary files
+tmp_rovodev_*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
