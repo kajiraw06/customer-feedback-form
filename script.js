@@ -6,6 +6,78 @@ satisfactionSlider.addEventListener('input', (e) => {
     ratingValue.textContent = e.target.value;
 });
 
+// Captcha functionality
+let captchaCode = '';
+
+function generateCaptcha() {
+    const canvas = document.getElementById('captchaCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Generate random 4-digit code
+    captchaCode = Math.floor(1000 + Math.random() * 9000).toString();
+    
+    // Set background with slight gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#f5f5f5');
+    gradient.addColorStop(1, '#e8e8e8');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add noise lines
+    for (let i = 0; i < 3; i++) {
+        ctx.strokeStyle = `rgba(200, 200, 200, ${Math.random() * 0.5 + 0.2})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.stroke();
+    }
+    
+    // Draw captcha text
+    ctx.font = 'bold 36px Arial';
+    ctx.textBaseline = 'middle';
+    
+    const startX = 20;
+    const y = canvas.height / 2;
+    
+    for (let i = 0; i < captchaCode.length; i++) {
+        const char = captchaCode[i];
+        const x = startX + (i * 35);
+        
+        // Random rotation for each character
+        const rotation = (Math.random() - 0.5) * 0.4;
+        
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+        
+        // Character shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.fillText(char, 2, 2);
+        
+        // Character color (red similar to the example)
+        ctx.fillStyle = '#e63946';
+        ctx.fillText(char, 0, 0);
+        
+        ctx.restore();
+    }
+}
+
+// Initialize captcha on page load
+document.addEventListener('DOMContentLoaded', () => {
+    generateCaptcha();
+});
+
+// Refresh captcha button
+document.getElementById('refreshCaptcha').addEventListener('click', () => {
+    generateCaptcha();
+    document.getElementById('captchaInput').value = '';
+    document.getElementById('captchaError').style.display = 'none';
+});
+
 // Character count for textareas
 const textareas = [
     { id: 'gameIssues', countId: 'gameIssuesCount', maxLength: 500 },
@@ -54,6 +126,26 @@ form.addEventListener('submit', (e) => {
     } else {
         gamesError.textContent = '';
         gamesError.style.display = 'none';
+    }
+    
+    // Validate captcha
+    const captchaInput = document.getElementById('captchaInput').value;
+    const captchaError = document.getElementById('captchaError');
+    
+    if (captchaInput !== captchaCode) {
+        captchaError.textContent = 'Incorrect verification code. Please try again.';
+        captchaError.style.display = 'block';
+        
+        // Generate new captcha
+        generateCaptcha();
+        document.getElementById('captchaInput').value = '';
+        
+        // Scroll to error
+        captchaError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    } else {
+        captchaError.textContent = '';
+        captchaError.style.display = 'none';
     }
     
     // Collect form data
@@ -114,6 +206,10 @@ function submitFeedback(formData) {
             textareas.forEach(({ countId }) => {
                 document.getElementById(countId).textContent = '0';
             });
+            
+            // Generate new captcha
+            generateCaptcha();
+            document.getElementById('captchaInput').value = '';
             
             // Re-enable and show form
             submitBtn.disabled = false;
