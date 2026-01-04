@@ -17,7 +17,7 @@
 
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: url('images/webbackground.png') top center / 100% 100% no-repeat fixed;
+    background: url('images/webbackground.png') top center / cover no-repeat fixed;
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
